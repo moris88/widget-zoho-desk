@@ -1,0 +1,130 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react-hooks/recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:tailwindcss/recommended",
+        "plugin:react/jsx-runtime"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.js"
+            ],
+            "extends": [
+                "plugin:@typescript-eslint/disable-type-checked"
+            ]
+        }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "unused-imports",
+        "simple-import-sort",
+        "prettier",
+        "tailwindcss"
+    ],
+    "rules": {
+        // "no-console": "warn",
+        "prettier/prettier": [
+            "error"
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "no-debugger": "off",
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    [
+                        // Packages `react` related packages come first.
+                        "^react",
+                        // Internal packages.
+                        "^(@|components)(/.*|$)",
+                        // Side effect imports.
+                        "^\\u0000",
+                        // Parent imports. Put `..` last.
+                        "^\\.\\.(?!/?$)",
+                        "^\\.\\./?$",
+                        // Other relative imports. Put same-folder imports and `.` last.
+                        "^\\./(?=.*/)(?!/?$)",
+                        "^\\.(?!/?$)",
+                        "^\\./?$",
+                        // Style imports.
+                        "^.+\\.?(css)$"
+                    ]
+                ]
+            }
+        ],
+        "simple-import-sort/exports": "error",
+        // tailwind
+        "tailwindcss/no-arbitrary-value": "warn",
+        "tailwindcss/enforces-shorthand": "off",
+        "tailwindcss/no-contradicting-classname": "error",
+        // react
+        "react/destructuring-assignment": [
+            "error",
+            "always",
+            {
+                "ignoreClassFields": true,
+                "destructureInSignature": "always"
+            }
+        ],
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": "function-declaration",
+                "unnamedComponents": "arrow-function"
+            }
+        ],
+        "react/jsx-sort-props": [
+            "warn",
+            {
+                "callbacksLast": true,
+                "shorthandFirst": true,
+                "shorthandLast": false,
+                "ignoreCase": true,
+                "noSortAlphabetically": false,
+                "reservedFirst": true
+            }
+        ]
+    },
+    "ignorePatterns": [
+        "node_modules/",
+        "app/",
+        "package.json",
+        ".eslintrc.json",
+        "vite.config.mts"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}
